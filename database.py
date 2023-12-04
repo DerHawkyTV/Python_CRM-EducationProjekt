@@ -23,13 +23,6 @@ class Database:
                             (name, email, phone, address, birthdate, notes))
         self.conn.commit()
 
-    def get_all_customers(self):
-        self.cursor.execute('SELECT * FROM customers')
-        return self.cursor.fetchall()
-
-    def close_connection(self):
-        self.conn.close()
-
     def edit_customer(self, customer_id, name, email, phone, address, birthdate, notes):
         self.cursor.execute('''
             UPDATE customers 
@@ -37,3 +30,19 @@ class Database:
             WHERE id=?
         ''', (name, email, phone, address, birthdate, notes, customer_id))
         self.conn.commit()
+
+    def delete_customer(self, customer_id):
+        self.cursor.execute('DELETE FROM customers WHERE id=?', (customer_id,))
+        self.conn.commit()
+
+    def get_all_customers(self):
+        self.cursor.execute('SELECT * FROM customers')
+        return self.cursor.fetchall()
+
+    def get_stats_by_region(self):
+        # Beispiel: Anzahl der Kunden pro Region
+        self.cursor.execute('SELECT address, COUNT(*) FROM customers GROUP BY address')
+        return self.cursor.fetchall()
+
+    def close_connection(self):
+        self.conn.close()
