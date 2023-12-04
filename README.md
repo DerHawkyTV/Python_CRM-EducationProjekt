@@ -8,3 +8,7 @@
  - Kunden Bearbeiten Hinzugefügt
  - Kunde Drucken Funktion Hinzugefügt (Aktuell nur Infoausgabe in der Konsole)
 
+ # Version 0.2
+ - Statistik Funkion hinzugefügt
+ - E-Mail an Kunden Senden hinzugefügt ( SSMTP muss hinterlegt werden)
+ - Gui Überarbeitet
